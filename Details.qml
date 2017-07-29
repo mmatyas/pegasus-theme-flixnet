@@ -65,5 +65,38 @@ Item {
                 family: uiFont.name
             }
         }
+
+        Rectangle {
+            property bool multiplayer: game.players > 1
+
+            width: text.width + rpx(8)
+            height: text.height + rpx(2)
+
+            color: "#505050"
+            radius: rpx(3)
+
+            visible: multiplayer
+
+            anchors.verticalCenter: parent.verticalCenter
+
+            Text {
+                id: text
+
+                anchors.centerIn: parent
+
+                text: {
+                    var str = "";
+                    for (var i = 0; i < game.players; i++)
+                        str += "\u263B"
+                    return str;
+                }
+
+                color: "#eee"
+                font {
+                    pixelSize: infobar.fontSize
+                    family: uiFont.name
+                }
+            }
+        }
     }
 }

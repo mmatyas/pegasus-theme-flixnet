@@ -51,12 +51,16 @@ FocusScope {
         clip: true
 
         focus: true
+        Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
+        Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
     }
 
     Component {
         id: platformAxisDelegate
 
         Item {
+            property alias axis: gameAxis
+
             width: ListView.view.width
             height: labelHeight + cellHeight
 

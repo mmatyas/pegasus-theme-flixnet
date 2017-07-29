@@ -19,40 +19,35 @@ import QtQuick 2.7
 
 
 Item {
-    property var game: pegasus.currentGame
+    property real percent
+    property int size
 
-    visible: game
+    height: size
+    width: height * 5
 
-    Text {
-        id: title
-        text: game.title
+    Image {
+        anchors.fill: parent
 
-        anchors.top: parent.top
-        anchors.topMargin: font.pixelSize * 1.5
+        source: "assets/star_empty.svg"
+        sourceSize { width: parent.height; height: parent.height }
 
-        color: "#eee"
-        font {
-            pixelSize: rpx(28)
-            family: uiFont.name
-            bold: true
-        }
+        fillMode: Image.TileHorizontally
+        horizontalAlignment: Image.AlignLeft
+        verticalAlignment: Image.AlignTop
     }
 
-    Row {
-        id: infobar
+    Image {
+        height: parent.height
+        width: parent.width * percent
+        z: 100
 
-        property int fontSize: rpx(16)
+        anchors.left: parent.left
 
-        anchors.top: title.bottom
-        anchors.topMargin: rpx(10)
+        source: "assets/star_filled.svg"
+        sourceSize { width: parent.height; height: parent.height }
 
-        height: fontSize + rpx(8)
-        spacing: rpx(10)
-
-        RatingBar {
-            percent: game.rating
-            size: parent.fontSize
-            anchors.verticalCenter: parent.verticalCenter
-        }
+        fillMode: Image.TileHorizontally
+        horizontalAlignment: Image.AlignLeft
+        verticalAlignment: Image.AlignTop
     }
 }

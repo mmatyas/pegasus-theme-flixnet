@@ -45,6 +45,15 @@ FocusScope {
         }
     }
 
+    Details {
+        anchors {
+            top: parent.top
+            left: parent.left; leftMargin: leftGuideline
+            bottom: platformAxis.top
+            right: parent.right
+        }
+    }
+
     Rectangle {
         id: selectionMarker
 

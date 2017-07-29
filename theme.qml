@@ -35,6 +35,23 @@ FocusScope {
     // layout
     readonly property int leftGuideline: rpx(100)
 
+    Rectangle {
+        id: selectionMarker
+
+        width: cellWidth
+        height: cellHeight
+        z: 100
+
+        anchors {
+            left: parent.left
+            leftMargin: leftGuideline
+            bottom: parent.bottom
+            bottomMargin: labelHeight + cellHeight + rpx(5)
+        }
+
+        color: "transparent"
+        border { width: 3; color: "white" }
+    }
 
     ListView {
         id: platformAxis

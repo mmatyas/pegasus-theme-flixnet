@@ -38,78 +38,8 @@ Item {
         }
     }
 
-    Row {
-        id: infobar
-
-        property int fontSize: rpx(16)
-
+    DetailsInfoBar {
         anchors.top: title.bottom
         anchors.topMargin: rpx(10)
-
-        height: fontSize + rpx(8)
-        spacing: rpx(10)
-
-        RatingBar {
-            percent: game.rating
-            size: parent.fontSize
-            anchors.verticalCenter: parent.verticalCenter
-        }
-
-        Text {
-            text: game.year ? game.year : ""
-
-            anchors.verticalCenter: parent.verticalCenter
-
-            color: "#eee"
-            font {
-                pixelSize: parent.fontSize
-                family: uiFont.name
-            }
-        }
-
-        Rectangle {
-            property bool multiplayer: game.players > 1
-
-            width: text.width + rpx(8)
-            height: text.height + rpx(2)
-
-            color: "#505050"
-            radius: rpx(3)
-
-            visible: multiplayer
-
-            anchors.verticalCenter: parent.verticalCenter
-
-            Text {
-                id: text
-
-                anchors.centerIn: parent
-
-                text: {
-                    var str = "";
-                    for (var i = 0; i < game.players; i++)
-                        str += "\u263B"
-                    return str;
-                }
-
-                color: "#eee"
-                font {
-                    pixelSize: infobar.fontSize
-                    family: uiFont.name
-                }
-            }
-        }
-
-        Text {
-            text: game.developer
-
-            anchors.verticalCenter: parent.verticalCenter
-
-            color: "#eee"
-            font {
-                pixelSize: parent.fontSize
-                family: uiFont.name
-            }
-        }
     }
 }

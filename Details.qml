@@ -57,6 +57,7 @@ Item {
 
         Text {
             text: game.year ? game.year : ""
+
             anchors.verticalCenter: parent.verticalCenter
 
             color: "#eee"
@@ -96,6 +97,18 @@ Item {
                     pixelSize: infobar.fontSize
                     family: uiFont.name
                 }
+            }
+        }
+
+        Text {
+            text: game.developer
+
+            anchors.verticalCenter: parent.verticalCenter
+
+            color: "#eee"
+            font {
+                pixelSize: parent.fontSize
+                family: uiFont.name
             }
         }
     }

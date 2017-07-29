@@ -35,6 +35,16 @@ FocusScope {
     // layout
     readonly property int leftGuideline: rpx(100)
 
+
+    Screenshot {
+        anchors {
+            top: parent.top
+            right: parent.right
+            bottom: selectionMarker.top
+            bottomMargin: -labelHeight
+        }
+    }
+
     Rectangle {
         id: selectionMarker
 

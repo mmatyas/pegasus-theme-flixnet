@@ -32,6 +32,9 @@ FocusScope {
     readonly property int labelFontSize: rpx(18)
     readonly property int labelHeight: labelFontSize * 2.5
 
+    // layout
+    readonly property int leftGuideline: rpx(100)
+
 
     ListView {
         id: platformAxis
@@ -53,16 +56,62 @@ FocusScope {
     Component {
         id: platformAxisDelegate
 
-        Rectangle {
+        Item {
             width: ListView.view.width
             height: labelHeight + cellHeight
+
+            Text {
+                text: longName || shortName
+
+                height: labelHeight
+                verticalAlignment: Text.AlignVCenter
+
+                anchors.left: parent.left
+                anchors.leftMargin: leftGuideline
+
+                color: "white"
+                font {
+                    pixelSize: labelFontSize
+                    family: uiFont.name
+                }
+            }
+
+            ListView {
+                id: gameAxis
+
+                width: parent.width
+                height: cellHeight
+
+                anchors.bottom: parent.bottom
+
+                model: games
+                delegate: gameAxisDelegate
+
+                orientation: ListView.Horizontal
+                spacing: cellSpacing
+                snapMode: ListView.SnapOneItem
+                highlightRangeMode: ListView.StrictlyEnforceRange
+                clip: true
+
+                preferredHighlightBegin: leftGuideline
+                preferredHighlightEnd: preferredHighlightBegin + cellWidth
+            }
+        }
+    }
+
+    Component {
+        id: gameAxisDelegate
+
+        Rectangle {
+            width: cellWidth
+            height: cellHeight
+
             color: ListView.isCurrentItem ? "orange" : "blue"
 
             Text {
                 text: index
-                color: "white"
-
                 anchors.centerIn: parent
+                color: "white"
             }
         }
     }

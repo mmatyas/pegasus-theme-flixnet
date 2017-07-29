@@ -54,5 +54,16 @@ Item {
             size: parent.fontSize
             anchors.verticalCenter: parent.verticalCenter
         }
+
+        Text {
+            text: game.year ? game.year : ""
+            anchors.verticalCenter: parent.verticalCenter
+
+            color: "#eee"
+            font {
+                pixelSize: parent.fontSize
+                family: uiFont.name
+            }
+        }
     }
 }

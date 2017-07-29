@@ -21,7 +21,7 @@ import QtQuick 2.7
 Row {
     property int fontSize: rpx(16)
 
-    height: fontSize + rpx(8)
+    height: fontSize + rpx(2)
     spacing: rpx(10)
 
 

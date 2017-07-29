@@ -17,6 +17,8 @@
 
 import QtQuick 2.7
 
+import "qrc:/qmlutils" as PegasusUtils
+
 
 Item {
     property var game: pegasus.currentGame
@@ -39,7 +41,33 @@ Item {
     }
 
     DetailsInfoBar {
+        id: infobar
+
         anchors.top: title.bottom
-        anchors.topMargin: rpx(10)
+        anchors.topMargin: rpx(5)
+    }
+
+    PegasusUtils.AutoScroll {
+        anchors {
+            top: infobar.bottom; topMargin: rpx(20)
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+
+        Text {
+            text: game.description
+
+            width: parent.width
+
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignJustify
+
+            color: "#eee"
+            font {
+                pixelSize: rpx(16)
+                family: uiFont.name
+            }
+        }
     }
 }

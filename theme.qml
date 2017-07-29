@@ -70,6 +70,8 @@ FocusScope {
         focus: true
         Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
         Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
+
+        onCurrentIndexChanged: pegasus.currentPlatformIndex = currentIndex
     }
 
     Component {
@@ -116,6 +118,9 @@ FocusScope {
 
                 preferredHighlightBegin: leftGuideline
                 preferredHighlightEnd: preferredHighlightBegin + cellWidth
+
+                onCurrentIndexChanged:
+                    pegasus.currentPlatform.currentGameIndex = currentIndex
             }
         }
     }

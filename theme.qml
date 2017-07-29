@@ -106,16 +106,55 @@ FocusScope {
     Component {
         id: gameAxisDelegate
 
-        Rectangle {
+        Item {
             width: cellWidth
             height: cellHeight
 
-            color: ListView.isCurrentItem ? "orange" : "blue"
+            Rectangle {
+                anchors.fill: parent
+                color: "#333"
+                visible: !assets.gridicon || image.status === Image.Loading
 
-            Text {
-                text: index
-                anchors.centerIn: parent
-                color: "white"
+                Image {
+                    anchors.centerIn: parent
+
+                    visible: image.status === Image.Loading
+                    source: "qrc:/common/loading-spinner.png"
+
+                    RotationAnimator on rotation {
+                        loops: Animator.Infinite
+                        from: 0; to: 360
+                        duration: 500
+                    }
+                }
+
+                Text {
+                    text: model.title
+
+                    width: parent.width * 0.8
+                    horizontalAlignment: Text.AlignHCenter
+                    wrapMode: Text.Wrap
+
+                    anchors.centerIn: parent
+                    visible: !model.assets.gridicon
+
+                    color: "#eee"
+                    font {
+                        pixelSize: rpx(16)
+                        family: uiFont.name
+                    }
+                }
+            }
+
+            Image {
+                id: image
+
+                anchors.fill: parent
+                visible: model.assets.gridicon
+
+                asynchronous: true
+                source: assets.gridicon ? "file:" + assets.gridicon : ""
+                sourceSize { width: 256; height: 256 }
             }
         }
     }

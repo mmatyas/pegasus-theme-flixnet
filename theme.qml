@@ -129,12 +129,11 @@ FocusScope {
                 }
             }
 
-            ListView {
+            PathView {
                 id: gameAxis
 
                 width: parent.width
                 height: cellHeight
-
                 anchors.bottom: parent.bottom
 
                 model: games
@@ -144,14 +143,23 @@ FocusScope {
                     height: cellHeight
                 }
 
-                orientation: ListView.Horizontal
-                spacing: cellSpacing
-                snapMode: ListView.SnapOneItem
-                highlightRangeMode: ListView.StrictlyEnforceRange
+                pathItemCount: 2 + Math.ceil(width / cellPaddedWidth)
+                property int fullPathWidth: pathItemCount * cellPaddedWidth
+                path: Path {
+                    startX: leftGuideline - cellPaddedWidth * 1.5
+                    startY: cellHeight * 0.5
+                    PathLine {
+                        x: gameAxis.path.startX + gameAxis.fullPathWidth
+                        y: gameAxis.path.startY
+                    }
+                }
+
+                snapMode: PathView.SnapOneItem
+                highlightRangeMode: PathView.StrictlyEnforceRange
                 clip: true
 
-                preferredHighlightBegin: leftGuideline
-                preferredHighlightEnd: preferredHighlightBegin + cellWidth
+                preferredHighlightBegin: (2 * cellPaddedWidth - cellSpacing / 2) / fullPathWidth
+                preferredHighlightEnd: preferredHighlightBegin
 
                 onCurrentIndexChanged:
                     pegasus.currentPlatform.currentGameIndex = currentIndex

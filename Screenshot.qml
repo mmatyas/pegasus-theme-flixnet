@@ -26,7 +26,6 @@ Image {
 
     asynchronous: true
     fillMode: Image.PreserveAspectFit
-    smooth: false
 
     source: game
             ? game.assets.screenshots[0]

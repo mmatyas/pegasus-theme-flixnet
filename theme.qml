@@ -149,6 +149,7 @@ FocusScope {
                     pixelSize: labelFontSize
                     family: uiFont.name
                     bold: true
+                    capitalization: longName ? Font.MixedCase : Font.AllUppercase
                 }
             }
 

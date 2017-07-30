@@ -97,6 +97,7 @@ FocusScope {
 
         snapMode: PathView.SnapOneItem
         highlightRangeMode: PathView.StrictlyEnforceRange
+        movementDirection: PathView.Positive
         clip: true
 
         preferredHighlightBegin: 1 / 4
@@ -110,6 +111,8 @@ FocusScope {
         Keys.onReturnPressed: pegasus.launchGame();
 
         onCurrentIndexChanged: pegasus.currentPlatformIndex = currentIndex
+
+        Component.onCompleted: currentIndex = pegasus.currentPlatformIndex;
     }
 
     Component {

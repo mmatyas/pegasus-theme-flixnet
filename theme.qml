@@ -72,7 +72,7 @@ FocusScope {
         border { width: 3; color: "white" }
     }
 
-    ListView {
+    PathView {
         id: platformAxis
 
         width: parent.width
@@ -82,11 +82,27 @@ FocusScope {
         model: pegasus.platforms
         delegate: platformAxisDelegate
 
-        snapMode: ListView.SnapOneItem
-        highlightRangeMode: ListView.StrictlyEnforceRange
+        pathItemCount: 3
+        readonly property int pathLength: (labelHeight + cellHeight) * 3
+        path: Path {
+            startX: platformAxis.width * 0.5
+            startY: (labelHeight + cellHeight) * -0.5
+            PathLine {
+                x: platformAxis.path.startX
+                y: platformAxis.path.startY + platformAxis.pathLength
+            }
+        }
+
+        snapMode: PathView.SnapOneItem
+        highlightRangeMode: PathView.StrictlyEnforceRange
         clip: true
 
+        preferredHighlightBegin: 1 / 3
+        preferredHighlightEnd: preferredHighlightBegin
+
         focus: true
+        Keys.onUpPressed: decrementCurrentIndex()
+        Keys.onDownPressed: incrementCurrentIndex()
         Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
         Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
 
@@ -99,18 +115,11 @@ FocusScope {
         Item {
             property alias axis: gameAxis
 
-            width: ListView.view.width
+            width: PathView.view.width
             height: labelHeight + cellHeight
 
-            visible: opacity > 0.01
-            opacity: {
-                // TODO: improve this logic
-                if (ListView.isCurrentItem)
-                    return 1.0;
-                if (ListView.view.currentIndex < index)
-                    return 0.6;
-                return 0.0;
-            }
+            visible: PathView.onPath
+            opacity: PathView.isCurrentItem ? 1.0 : 0.6
             Behavior on opacity { NumberAnimation { duration: 150 } }
 
             Text {

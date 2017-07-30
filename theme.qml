@@ -22,7 +22,7 @@ FocusScope {
     focus: true
 
     // grid icons
-    readonly property real cellRatio: 460 / 215
+    readonly property real cellRatio: 16 / 9
     readonly property int cellHeight: rpx(130)
     readonly property int cellWidth: cellHeight * cellRatio
     readonly property int cellSpacing: rpx(10)

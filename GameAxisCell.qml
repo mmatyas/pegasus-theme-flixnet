@@ -64,6 +64,8 @@ Item {
         visible: game.assets.gridicon
 
         asynchronous: true
+        fillMode: Image.PreserveAspectCrop
+
         source: game.assets.gridicon ? "file:" + game.assets.gridicon : ""
         sourceSize { width: 256; height: 256 }
     }

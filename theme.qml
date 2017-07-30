@@ -135,6 +135,7 @@ FocusScope {
                 font {
                     pixelSize: labelFontSize
                     family: uiFont.name
+                    bold: true
                 }
             }
 

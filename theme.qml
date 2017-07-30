@@ -82,8 +82,10 @@ FocusScope {
         model: pegasus.platforms
         delegate: platformAxisDelegate
 
-        pathItemCount: 3
-        readonly property int pathLength: (labelHeight + cellHeight) * 3
+        // FIXME: this was increased to 4 to avoid seeing the scrolling
+        // animation when a new game axis is created
+        pathItemCount: 4
+        readonly property int pathLength: (labelHeight + cellHeight) * 4
         path: Path {
             startX: platformAxis.width * 0.5
             startY: (labelHeight + cellHeight) * -0.5
@@ -97,7 +99,7 @@ FocusScope {
         highlightRangeMode: PathView.StrictlyEnforceRange
         clip: true
 
-        preferredHighlightBegin: 1 / 3
+        preferredHighlightBegin: 1 / 4
         preferredHighlightEnd: preferredHighlightBegin
 
         focus: true

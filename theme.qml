@@ -127,7 +127,11 @@ FocusScope {
                 anchors.bottom: parent.bottom
 
                 model: games
-                delegate: gameAxisDelegate
+                delegate: GameAxisCell {
+                    game: modelData
+                    width: cellWidth
+                    height: cellHeight
+                }
 
                 orientation: ListView.Horizontal
                 spacing: cellSpacing
@@ -140,62 +144,6 @@ FocusScope {
 
                 onCurrentIndexChanged:
                     pegasus.currentPlatform.currentGameIndex = currentIndex
-            }
-        }
-    }
-
-    Component {
-        id: gameAxisDelegate
-
-        Item {
-            width: cellWidth
-            height: cellHeight
-
-            Rectangle {
-                anchors.fill: parent
-                color: "#333"
-                visible: !assets.gridicon || image.status === Image.Loading
-
-                Image {
-                    anchors.centerIn: parent
-
-                    visible: image.status === Image.Loading
-                    source: "qrc:/common/loading-spinner.png"
-
-                    RotationAnimator on rotation {
-                        loops: Animator.Infinite
-                        from: 0; to: 360
-                        duration: 500
-                    }
-                }
-
-                Text {
-                    text: model.title
-
-                    width: parent.width * 0.8
-                    horizontalAlignment: Text.AlignHCenter
-                    wrapMode: Text.Wrap
-
-                    anchors.centerIn: parent
-                    visible: !model.assets.gridicon
-
-                    color: "#eee"
-                    font {
-                        pixelSize: rpx(16)
-                        family: uiFont.name
-                    }
-                }
-            }
-
-            Image {
-                id: image
-
-                anchors.fill: parent
-                visible: model.assets.gridicon
-
-                asynchronous: true
-                source: assets.gridicon ? "file:" + assets.gridicon : ""
-                sourceSize { width: 256; height: 256 }
             }
         }
     }

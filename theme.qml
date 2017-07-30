@@ -103,8 +103,8 @@ FocusScope {
         focus: true
         Keys.onUpPressed: decrementCurrentIndex()
         Keys.onDownPressed: incrementCurrentIndex()
-        Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
-        Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
+        Keys.onLeftPressed: currentItem.prev()
+        Keys.onRightPressed: currentItem.next()
 
         onCurrentIndexChanged: pegasus.currentPlatformIndex = currentIndex
     }
@@ -114,6 +114,19 @@ FocusScope {
 
         Item {
             property alias axis: gameAxis
+
+            Component.onCompleted: {
+                if (currentGameIndex >= 0)
+                    gameAxis.currentIndex = currentGameIndex;
+            }
+            function next() {
+                gameAxis.incrementCurrentIndex();
+                currentGameIndex = gameAxis.currentIndex;
+            }
+            function prev() {
+                gameAxis.decrementCurrentIndex();
+                currentGameIndex = gameAxis.currentIndex;
+            }
 
             width: PathView.view.width
             height: labelHeight + cellHeight
@@ -170,9 +183,6 @@ FocusScope {
 
                 preferredHighlightBegin: (2 * cellPaddedWidth - cellSpacing / 2) / fullPathWidth
                 preferredHighlightEnd: preferredHighlightBegin
-
-                onCurrentIndexChanged:
-                    pegasus.currentPlatform.currentGameIndex = currentIndex
             }
         }
     }

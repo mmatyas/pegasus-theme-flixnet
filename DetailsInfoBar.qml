@@ -43,6 +43,18 @@ Row {
         }
     }
 
+    Text {
+        text: game.developer
+
+        anchors.verticalCenter: parent.verticalCenter
+
+        color: "#eee"
+        font {
+            pixelSize: fontSize
+            family: uiFont.name
+        }
+    }
+
     Rectangle {
         property bool multiplayer: game.players > 1
 
@@ -73,18 +85,6 @@ Row {
                 pixelSize: fontSize
                 family: uiFont.name
             }
-        }
-    }
-
-    Text {
-        text: game.developer
-
-        anchors.verticalCenter: parent.verticalCenter
-
-        color: "#eee"
-        font {
-            pixelSize: fontSize
-            family: uiFont.name
         }
     }
 }

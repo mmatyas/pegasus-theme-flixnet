@@ -107,6 +107,7 @@ FocusScope {
         Keys.onDownPressed: incrementCurrentIndex()
         Keys.onLeftPressed: currentItem.prev()
         Keys.onRightPressed: currentItem.next()
+        Keys.onReturnPressed: pegasus.launchGame();
 
         onCurrentIndexChanged: pegasus.currentPlatformIndex = currentIndex
     }

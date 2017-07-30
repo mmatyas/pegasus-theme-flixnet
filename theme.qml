@@ -102,6 +102,17 @@ FocusScope {
             width: ListView.view.width
             height: labelHeight + cellHeight
 
+            visible: opacity > 0.01
+            opacity: {
+                // TODO: improve this logic
+                if (ListView.isCurrentItem)
+                    return 1.0;
+                if (ListView.view.currentIndex < index)
+                    return 0.6;
+                return 0.0;
+            }
+            Behavior on opacity { NumberAnimation { duration: 150 } }
+
             Text {
                 text: longName || shortName
 

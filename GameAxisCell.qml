@@ -68,7 +68,7 @@ Item {
 
         source: {
             if (game) {
-                var asset_path = game.assets.gridicon;
+                var asset_path = game.assets.gridicon || game.assets.boxFront;
                 if (asset_path)
                     return "file:" + asset_path;
             }

@@ -24,7 +24,7 @@ Item {
     Rectangle {
         anchors.fill: parent
         color: "#333"
-        visible: !game.assets.gridicon || image.status === Image.Loading
+        visible: image.status !== Image.Ready
 
         Image {
             anchors.centerIn: parent
@@ -61,12 +61,19 @@ Item {
         id: image
 
         anchors.fill: parent
-        visible: game.assets.gridicon
+        visible: source
 
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
-        source: game.assets.gridicon ? "file:" + game.assets.gridicon : ""
+        source: {
+            if (game) {
+                var asset_path = game.assets.gridicon;
+                if (asset_path)
+                    return "file:" + asset_path;
+            }
+            return "";
+        }
         sourceSize { width: 256; height: 256 }
     }
 }

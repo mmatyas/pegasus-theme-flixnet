@@ -26,37 +26,39 @@ Row {
 
 
     RatingBar {
-        percent: game.rating
+        percent: game ? game.rating : 0
         size: fontSize
+
+        visible: percent > 0
         anchors.verticalCenter: parent.verticalCenter
     }
 
     Text {
-        text: game.year ? game.year : ""
-
-        anchors.verticalCenter: parent.verticalCenter
-
+        text: (game && game.year > 0) ? game.year : ""
         color: "#eee"
         font {
             pixelSize: fontSize
             family: uiFont.name
         }
+
+        visible: text
+        anchors.verticalCenter: parent.verticalCenter
     }
 
     Text {
-        text: game.developer
-
-        anchors.verticalCenter: parent.verticalCenter
-
+        text: game ? game.developer : ""
         color: "#eee"
         font {
             pixelSize: fontSize
             family: uiFont.name
         }
+
+        anchors.verticalCenter: parent.verticalCenter
     }
 
     Rectangle {
-        property bool multiplayer: game.players > 1
+        property int playerCount: game ? game.players : 1
+        property bool multiplayer: playerCount > 1
 
         width: text.width + rpx(8)
         height: text.height + rpx(2)
@@ -75,7 +77,7 @@ Row {
 
             text: {
                 var str = "";
-                for (var i = 0; i < game.players; i++)
+                for (var i = 0; i < parent.playerCount; i++)
                     str += "\u263B"
                 return str;
             }

@@ -27,7 +27,7 @@ Item {
 
     Text {
         id: title
-        text: game.title
+        text: game ? game.title : ""
 
         anchors.top: parent.top
         anchors.topMargin: font.pixelSize * 1.5
@@ -56,7 +56,7 @@ Item {
         }
 
         Text {
-            text: game.description
+            text: game ? game.description : ""
 
             width: parent.width
 

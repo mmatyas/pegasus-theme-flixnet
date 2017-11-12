@@ -27,11 +27,7 @@ Image {
     asynchronous: true
     fillMode: Image.PreserveAspectFit
 
-    source: game
-            ? game.assets.screenshots[0]
-              ? "file:" + game.assets.screenshots[0]
-              : ""
-            : ""
+    source: game.assets.screenshots[0] || ""
     sourceSize { width: 512; height: 512 }
 
 

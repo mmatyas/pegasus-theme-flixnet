@@ -66,14 +66,7 @@ Item {
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
-        source: {
-            if (game) {
-                var asset_path = game.assets.gridicon || game.assets.boxFront;
-                if (asset_path)
-                    return "file:" + asset_path;
-            }
-            return "";
-        }
+        source: game.assets.gridicon || game.assets.boxFront
         sourceSize { width: 256; height: 256 }
     }
 }

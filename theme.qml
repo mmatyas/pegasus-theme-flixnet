@@ -49,7 +49,7 @@ FocusScope {
         anchors {
             top: parent.top
             left: parent.left; leftMargin: leftGuideline
-            bottom: platformAxis.top; bottomMargin: labelHeight * 2
+            bottom: collectionAxis.top; bottomMargin: labelHeight * 2
             right: parent.horizontalCenter
         }
     }
@@ -73,25 +73,25 @@ FocusScope {
     }
 
     PathView {
-        id: platformAxis
+        id: collectionAxis
 
         width: parent.width
         height: 2 * (labelHeight + cellHeight) + rpx(5)
         anchors.bottom: parent.bottom
 
-        model: pegasus.platforms
-        delegate: platformAxisDelegate
+        model: pegasus.collections.model
+        delegate: collectionAxisDelegate
 
         // FIXME: this was increased to 4 to avoid seeing the scrolling
         // animation when a new game axis is created
         pathItemCount: 4
         readonly property int pathLength: (labelHeight + cellHeight) * 4
         path: Path {
-            startX: platformAxis.width * 0.5
+            startX: collectionAxis.width * 0.5
             startY: (labelHeight + cellHeight) * -0.5
             PathLine {
-                x: platformAxis.path.startX
-                y: platformAxis.path.startY + platformAxis.pathLength
+                x: collectionAxis.path.startX
+                y: collectionAxis.path.startY + collectionAxis.pathLength
             }
         }
 
@@ -110,28 +110,27 @@ FocusScope {
         Keys.onRightPressed: currentItem.next()
         Keys.onReturnPressed: pegasus.launchGame();
 
-        onCurrentIndexChanged: pegasus.currentPlatformIndex = currentIndex
-
-        Component.onCompleted: currentIndex = pegasus.currentPlatformIndex;
+        onCurrentIndexChanged: pegasus.collections.index = currentIndex
+        Component.onCompleted: currentIndex = pegasus.collections.index
     }
 
     Component {
-        id: platformAxisDelegate
+        id: collectionAxisDelegate
 
         Item {
             property alias axis: gameAxis
 
             Component.onCompleted: {
-                if (currentGameIndex >= 0)
-                    gameAxis.currentIndex = currentGameIndex;
+                if (games.index >= 0)
+                    gameAxis.currentIndex = games.index;
             }
             function next() {
                 gameAxis.incrementCurrentIndex();
-                currentGameIndex = gameAxis.currentIndex;
+                games.index = gameAxis.currentIndex;
             }
             function prev() {
                 gameAxis.decrementCurrentIndex();
-                currentGameIndex = gameAxis.currentIndex;
+                games.index = gameAxis.currentIndex;
             }
 
             width: PathView.view.width
@@ -166,7 +165,7 @@ FocusScope {
                 height: cellHeight
                 anchors.bottom: parent.bottom
 
-                model: games
+                model: games.model
                 delegate: GameAxisCell {
                     game: modelData
                     width: cellWidth

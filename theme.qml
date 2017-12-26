@@ -141,7 +141,7 @@ FocusScope {
             Behavior on opacity { NumberAnimation { duration: 150 } }
 
             Text {
-                text: longName || shortName
+                text: name || tag
 
                 height: labelHeight
                 verticalAlignment: Text.AlignVCenter
@@ -154,7 +154,7 @@ FocusScope {
                     pixelSize: labelFontSize
                     family: uiFont.name
                     bold: true
-                    capitalization: longName ? Font.MixedCase : Font.AllUppercase
+                    capitalization: name ? Font.MixedCase : Font.AllUppercase
                 }
             }
 

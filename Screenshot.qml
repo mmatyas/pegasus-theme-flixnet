@@ -20,7 +20,7 @@ import QtGraphicalEffects 1.0
 
 
 Image {
-    property var game: pegasus.currentGame
+    property var game: api.currentGame
 
     visible: game
 

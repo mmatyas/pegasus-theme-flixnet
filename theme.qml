@@ -79,7 +79,7 @@ FocusScope {
         height: 2 * (labelHeight + cellHeight) + vpx(5)
         anchors.bottom: parent.bottom
 
-        model: pegasus.collections.model
+        model: api.collections.model
         delegate: collectionAxisDelegate
 
         // FIXME: this was increased to 4 to avoid seeing the scrolling
@@ -108,10 +108,10 @@ FocusScope {
         Keys.onDownPressed: incrementCurrentIndex()
         Keys.onLeftPressed: currentItem.prev()
         Keys.onRightPressed: currentItem.next()
-        Keys.onReturnPressed: pegasus.launchGame();
+        Keys.onReturnPressed: api.launchGame();
 
-        onCurrentIndexChanged: pegasus.collections.index = currentIndex
-        Component.onCompleted: currentIndex = pegasus.collections.index
+        onCurrentIndexChanged: api.collections.index = currentIndex
+        Component.onCompleted: currentIndex = api.collections.index
     }
 
     Component {

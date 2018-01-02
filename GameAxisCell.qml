@@ -51,7 +51,7 @@ Item {
 
             color: "#eee"
             font {
-                pixelSize: rpx(16)
+                pixelSize: vpx(16)
                 family: uiFont.name
             }
         }

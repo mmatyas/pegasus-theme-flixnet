@@ -19,10 +19,10 @@ import QtQuick 2.7
 
 
 Row {
-    property int fontSize: rpx(16)
+    property int fontSize: vpx(16)
 
-    height: fontSize + rpx(2)
-    spacing: rpx(10)
+    height: fontSize + vpx(2)
+    spacing: vpx(10)
 
 
     RatingBar {
@@ -60,11 +60,11 @@ Row {
         property int playerCount: game ? game.players : 1
         property bool multiplayer: playerCount > 1
 
-        width: text.width + rpx(8)
-        height: text.height + rpx(2)
+        width: text.width + vpx(8)
+        height: text.height + vpx(2)
 
         color: "#505050"
-        radius: rpx(3)
+        radius: vpx(3)
 
         visible: multiplayer
 

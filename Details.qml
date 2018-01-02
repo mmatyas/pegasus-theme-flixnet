@@ -34,7 +34,7 @@ Item {
 
         color: "#eee"
         font {
-            pixelSize: rpx(28)
+            pixelSize: vpx(28)
             family: uiFont.name
             bold: true
         }
@@ -44,12 +44,12 @@ Item {
         id: infobar
 
         anchors.top: title.bottom
-        anchors.topMargin: rpx(5)
+        anchors.topMargin: vpx(5)
     }
 
     PegasusUtils.AutoScroll {
         anchors {
-            top: infobar.bottom; topMargin: rpx(20)
+            top: infobar.bottom; topMargin: vpx(20)
             bottom: parent.bottom
             left: parent.left
             right: parent.right
@@ -65,7 +65,7 @@ Item {
 
             color: "#eee"
             font {
-                pixelSize: rpx(16)
+                pixelSize: vpx(16)
                 family: uiFont.name
             }
         }

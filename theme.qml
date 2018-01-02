@@ -23,17 +23,17 @@ FocusScope {
 
     // grid icons
     readonly property real cellRatio: 16 / 9
-    readonly property int cellHeight: rpx(130)
+    readonly property int cellHeight: vpx(130)
     readonly property int cellWidth: cellHeight * cellRatio
-    readonly property int cellSpacing: rpx(10)
+    readonly property int cellSpacing: vpx(10)
     readonly property int cellPaddedWidth: cellWidth + cellSpacing
 
     // category labels of rows
-    readonly property int labelFontSize: rpx(18)
+    readonly property int labelFontSize: vpx(18)
     readonly property int labelHeight: labelFontSize * 2.5
 
     // layout
-    readonly property int leftGuideline: rpx(100)
+    readonly property int leftGuideline: vpx(100)
 
 
     Screenshot {
@@ -65,7 +65,7 @@ FocusScope {
             left: parent.left
             leftMargin: leftGuideline
             bottom: parent.bottom
-            bottomMargin: labelHeight + cellHeight + rpx(5)
+            bottomMargin: labelHeight + cellHeight + vpx(5)
         }
 
         color: "transparent"
@@ -76,7 +76,7 @@ FocusScope {
         id: collectionAxis
 
         width: parent.width
-        height: 2 * (labelHeight + cellHeight) + rpx(5)
+        height: 2 * (labelHeight + cellHeight) + vpx(5)
         anchors.bottom: parent.bottom
 
         model: pegasus.collections.model

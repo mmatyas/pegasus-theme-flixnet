@@ -38,7 +38,7 @@ Row {
         color: "#eee"
         font {
             pixelSize: fontSize
-            family: uiFont.name
+            family: globalFonts.sans
         }
 
         visible: text
@@ -50,7 +50,7 @@ Row {
         color: "#eee"
         font {
             pixelSize: fontSize
-            family: uiFont.name
+            family: globalFonts.sans
         }
 
         anchors.verticalCenter: parent.verticalCenter
@@ -85,7 +85,7 @@ Row {
             color: "#eee"
             font {
                 pixelSize: fontSize
-                family: uiFont.name
+                family: globalFonts.sans
             }
         }
     }

@@ -35,7 +35,7 @@ Item {
         color: "#eee"
         font {
             pixelSize: vpx(28)
-            family: uiFont.name
+            family: globalFonts.sans
             bold: true
         }
     }
@@ -66,7 +66,7 @@ Item {
             color: "#eee"
             font {
                 pixelSize: vpx(16)
-                family: uiFont.name
+                family: globalFonts.sans
             }
         }
     }

@@ -108,7 +108,7 @@ FocusScope {
         Keys.onDownPressed: incrementCurrentIndex()
         Keys.onLeftPressed: currentItem.prev()
         Keys.onRightPressed: currentItem.next()
-        Keys.onReturnPressed: api.launchGame();
+        Keys.onReturnPressed: api.currentGame.launch();
 
         onCurrentIndexChanged: api.collections.index = currentIndex
         Component.onCompleted: currentIndex = api.collections.index
@@ -152,7 +152,7 @@ FocusScope {
                 color: "white"
                 font {
                     pixelSize: labelFontSize
-                    family: uiFont.name
+                    family: globalFonts.sans
                     bold: true
                     capitalization: name ? Font.MixedCase : Font.AllUppercase
                 }

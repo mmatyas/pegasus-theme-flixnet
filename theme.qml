@@ -110,7 +110,10 @@ FocusScope {
         Keys.onDownPressed: incrementCurrentIndex()
         Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
         Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
-        Keys.onReturnPressed: currentItem.currentGame.launch()
+        Keys.onPressed: {
+            if (!event.isAutoRepeat && api.keys.isAccept(event))
+                currentItem.currentGame.launch();
+        }
     }
 
     Component {

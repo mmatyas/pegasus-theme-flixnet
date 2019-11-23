@@ -37,6 +37,7 @@ FocusScope {
 
 
     Screenshot {
+        game: collectionAxis.currentItem.currentGame
         anchors {
             top: parent.top
             right: parent.right
@@ -46,6 +47,7 @@ FocusScope {
     }
 
     Details {
+        game: collectionAxis.currentItem.currentGame
         anchors {
             top: parent.top
             left: parent.left; leftMargin: leftGuideline
@@ -79,7 +81,7 @@ FocusScope {
         height: 2 * (labelHeight + cellHeight) + vpx(5)
         anchors.bottom: parent.bottom
 
-        model: api.collections.model
+        model: api.collections
         delegate: collectionAxisDelegate
 
         // FIXME: this was increased to 4 to avoid seeing the scrolling
@@ -106,12 +108,9 @@ FocusScope {
         focus: true
         Keys.onUpPressed: decrementCurrentIndex()
         Keys.onDownPressed: incrementCurrentIndex()
-        Keys.onLeftPressed: currentItem.prev()
-        Keys.onRightPressed: currentItem.next()
-        Keys.onReturnPressed: api.currentGame.launch();
-
-        onCurrentIndexChanged: api.collections.index = currentIndex
-        Component.onCompleted: currentIndex = api.collections.index
+        Keys.onLeftPressed: currentItem.axis.decrementCurrentIndex()
+        Keys.onRightPressed: currentItem.axis.incrementCurrentIndex()
+        Keys.onReturnPressed: currentItem.currentGame.launch()
     }
 
     Component {
@@ -119,19 +118,7 @@ FocusScope {
 
         Item {
             property alias axis: gameAxis
-
-            Component.onCompleted: {
-                if (games.index >= 0)
-                    gameAxis.currentIndex = games.index;
-            }
-            function next() {
-                gameAxis.incrementCurrentIndex();
-                games.index = gameAxis.currentIndex;
-            }
-            function prev() {
-                gameAxis.decrementCurrentIndex();
-                games.index = gameAxis.currentIndex;
-            }
+            readonly property var currentGame: axis.currentGame
 
             width: PathView.view.width
             height: labelHeight + cellHeight
@@ -165,12 +152,13 @@ FocusScope {
                 height: cellHeight
                 anchors.bottom: parent.bottom
 
-                model: games.model
+                model: games
                 delegate: GameAxisCell {
                     game: modelData
                     width: cellWidth
                     height: cellHeight
                 }
+                readonly property var currentGame: games.get(currentIndex)
 
                 pathItemCount: 2 + Math.ceil(width / cellPaddedWidth)
                 property int fullPathWidth: pathItemCount * cellPaddedWidth

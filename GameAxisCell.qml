@@ -30,7 +30,7 @@ Item {
             anchors.centerIn: parent
 
             visible: image.status === Image.Loading
-            source: "qrc:/common/loading-spinner.png"
+            source: "assets/loading-spinner.png"
 
             RotationAnimator on rotation {
                 loops: Animator.Infinite

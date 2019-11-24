@@ -66,7 +66,13 @@ Item {
         asynchronous: true
         fillMode: Image.PreserveAspectCrop
 
-        source: game.assets.gridicon || game.assets.boxFront
+        source: game.assets.banner
+            || game.assets.steam
+            || game.assets.marquee
+            || game.assets.tile
+            || game.assets.boxFront
+            || game.assets.poster
+            || game.assets.cartridge
         sourceSize { width: 256; height: 256 }
     }
 }

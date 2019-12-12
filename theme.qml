@@ -163,10 +163,14 @@ FocusScope {
                 }
                 readonly property var currentGame: games.get(currentIndex)
 
-                pathItemCount: 2 + Math.ceil(width / cellPaddedWidth)
+                readonly property int maxItemCount: 2 + Math.ceil(width / cellPaddedWidth)
+                pathItemCount: Math.min(maxItemCount, model.count)
+
                 property int fullPathWidth: pathItemCount * cellPaddedWidth
                 path: Path {
-                    startX: leftGuideline - cellPaddedWidth * 1.5
+                    startX: (gameAxis.model.count >= gameAxis.maxItemCount)
+                        ? leftGuideline - cellPaddedWidth * 1.5
+                        : leftGuideline + (cellPaddedWidth * 0.5  - cellSpacing * 0.5);
                     startY: cellHeight * 0.5
                     PathLine {
                         x: gameAxis.path.startX + gameAxis.fullPathWidth
@@ -178,7 +182,9 @@ FocusScope {
                 highlightRangeMode: PathView.StrictlyEnforceRange
                 clip: true
 
-                preferredHighlightBegin: (2 * cellPaddedWidth - cellSpacing / 2) / fullPathWidth
+                preferredHighlightBegin: (gameAxis.model.count >= gameAxis.maxItemCount)
+                    ? (2 * cellPaddedWidth - cellSpacing / 2) / fullPathWidth
+                    : 0;
                 preferredHighlightEnd: preferredHighlightBegin
             }
         }

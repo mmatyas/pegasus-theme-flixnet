@@ -19,23 +19,33 @@ import QtQuick 2.7
 import QtGraphicalEffects 1.0
 
 
-Image {
+Item {
     property var game: null
 
     visible: game
 
-    asynchronous: true
-    fillMode: Image.PreserveAspectFit
+    Image {
+        id: img
 
-    source: (game && game.assets.screenshots[0]) || ""
-    sourceSize { width: 512; height: 512 }
+        height: parent.height
+        width: height
+        anchors.right: parent.right
 
+        source: (game && game.assets.screenshots[0]) || ""
+        sourceSize { width: 512; height: 512 }
+        asynchronous: true
+        fillMode: Image.PreserveAspectFit
+
+        onStatusChanged: if (status == Image.Ready) {
+            width = height * implicitWidth / implicitHeight;
+        }
+    }
 
     LinearGradient {
-        width: parent.width
+        width: img.width
         height: labelHeight * 2
 
-        anchors.bottom: parent.bottom
+        anchors.bottom: img.bottom
 
         start: Qt.point(0, height)
         end: Qt.point(0, 0)
@@ -46,10 +56,10 @@ Image {
     }
 
     LinearGradient {
-        width: parent.width * 0.25
-        height: parent.height
+        width: img.width * 0.25
+        height: img.height
 
-        anchors.left: parent.left
+        anchors.left: img.left
 
         start: Qt.point(0, 0)
         end: Qt.point(width, 0)

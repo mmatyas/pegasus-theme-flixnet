@@ -40,6 +40,7 @@ FocusScope {
         game: collectionAxis.currentItem.currentGame
         anchors {
             top: parent.top
+            left: parent.horizontalCenter
             right: parent.right
             bottom: selectionMarker.top
             bottomMargin: -labelHeight

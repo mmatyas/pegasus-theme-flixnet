@@ -34,7 +34,7 @@ Row {
     }
 
     Text {
-        text: (game && game.year > 0) ? game.year : ""
+        text: (game && game.releaseYear > 0) ? game.releaseYear : ""
         color: "#eee"
         font {
             pixelSize: fontSize

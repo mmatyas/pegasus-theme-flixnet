@@ -46,6 +46,7 @@ Item {
         height: labelHeight * 2
 
         anchors.bottom: img.bottom
+        anchors.right: img.right
 
         start: Qt.point(0, height)
         end: Qt.point(0, 0)

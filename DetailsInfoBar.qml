@@ -56,37 +56,10 @@ Row {
         anchors.verticalCenter: parent.verticalCenter
     }
 
-    Rectangle {
-        property int playerCount: game ? game.players : 1
-        property bool multiplayer: playerCount > 1
-
-        width: text.width + vpx(8)
-        height: text.height + vpx(2)
-
-        color: "#505050"
-        radius: vpx(3)
-
-        visible: multiplayer
-
+    PlayerBar {
+        size: fontSize
+        playerCount: game ? game.players : 1
+        visible: playerCount > 1
         anchors.verticalCenter: parent.verticalCenter
-
-        Text {
-            id: text
-
-            anchors.centerIn: parent
-
-            text: {
-                var str = "";
-                for (var i = 0; i < parent.playerCount; i++)
-                    str += "\u263B"
-                return str;
-            }
-
-            color: "#eee"
-            font {
-                pixelSize: fontSize
-                family: globalFonts.sans
-            }
-        }
     }
 }
